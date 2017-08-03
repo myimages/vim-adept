@@ -29,15 +29,21 @@ _VIM = {
     _VIM.setCursor()
   end,
   visualMode = function()
-    --buffer.selection_mode = buffer.SEL_STREAM
     buffer.selection_start = buffer.current_pos
     buffer.selection_end = buffer.current_pos
     keys.MODE = 'visual_mode'
     _VIM.setStatusBar()
     _VIM.setCursor()
   end,
+  visualLineMode = function()
+    keys.MODE = 'visual_line_mode'
+    _VIM.setStatusBar()
+    _VIM.setCursor()
+    buffer.home()
+    buffer.line_end_extend()
+  end,
   setCursor = function()
-    if keys.MODE == 'normal_mode' or keys.MODE == 'visual_mode' then
+    if keys.MODE == 'normal_mode' or keys.MODE == 'visual_mode' or keys.MODE == 'visual_line_mode' then
       buffer.caret_style = buffer.CARETSTYLE_BLOCK
     else
       buffer.caret_style = buffer.CARETSTYLE_LINE
@@ -50,6 +56,8 @@ _VIM = {
       ui.statusbar_text = 'INSERT'
     elseif keys.MODE == 'visual_mode' then
       ui.statusbar_text = 'VISUAL'
+    elseif keys.MODE == 'visual_line_mode' then
+      ui.statusbar_text = 'VISUAL LINE'
     end
   end,
   act = function(f)

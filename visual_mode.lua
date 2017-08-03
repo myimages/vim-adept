@@ -119,7 +119,7 @@ keys.visual_mode = {
   ['D'] = buffer.del_line_right,
   ['W'] = _VIM.act(function()
     local old_chars = buffer.word_chars
-    buffer.word_chars = buffer.word_chars .. buffer.punctuation_chars
+    buffver.word_chars = buffer.word_chars .. buffer.punctuation_chars
     buffer.word_right_extend()
     buffer.word_chars = old_chars
   end),
@@ -172,6 +172,9 @@ keys.visual_mode = {
   ['c'] = function()
     buffer.cut()
     _VIM.insertMode()
+  end,
+  ['esc'] = function()
+    _VIM.normalMode()
   end,
 }
 

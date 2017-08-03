@@ -21,6 +21,9 @@ keys.normal_mode = {
   ['v'] = function()
     _VIM.visualMode()
   end,
+  ['V'] = function()
+    _VIM.visualLineMode()
+  end,
   ['p'] = function()
     if _VIM.state.line_copy then
       buffer.line_end()
