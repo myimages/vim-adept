@@ -4,7 +4,7 @@ This is an attempt at a Vim mode for [Textadept](https://foicica.com/textadept/)
 
 ## Installation
 
-To install, clone this repo to `~/.textadept/modules/vim-adept` and add `require 'vim-adept'` to ~/.textadept/init.lua`.
+To install, clone this repo to `~/.textadept/modules/vim-adept` and add `require 'vim-adept'` to `~/.textadept/init.lua`.
 
 ## Usage
 
