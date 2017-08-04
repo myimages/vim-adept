@@ -245,6 +245,18 @@ keys.normal_mode = {
       _VIM.insertMode()
     end,
   },
+  ['>'] = {
+    ['>'] = _VIM.act(function()
+      buffer.vc_home()
+      buffer.tab()
+    end),
+  },
+  ['<'] = {
+    ['<'] = _VIM.act(function()
+      buffer.vc_home()
+      buffer.back_tab()
+    end),
+  },
 }
 
 -- Return an empty function so undefined keys don't do anything

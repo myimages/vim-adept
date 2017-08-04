@@ -153,9 +153,7 @@ keys.visual_mode = {
       buffer.goto_pos(0)
       buffer.set_selection(buffer.current_pos, old_start)
     end,
-    ['c'] = {
-      ['c'] = textadept.editing.block_comment,
-    },
+    ['c'] = textadept.editing.block_comment,
   },
   ['y'] = function()
     buffer.copy()
@@ -176,6 +174,14 @@ keys.visual_mode = {
   ['esc'] = function()
     _VIM.normalMode()
   end,
+  ['>'] = _VIM.act(function()
+    buffer.vc_home()
+    buffer.tab()
+  end),
+  ['<'] = _VIM.act(function()
+    buffer.vc_home()
+    buffer.back_tab()
+  end),
 }
 
 -- Return an empty function so undefined keys don't do anything

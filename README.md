@@ -10,6 +10,16 @@ To install, clone this repo to `~/.textadept/modules/vim-adept` and add `require
 
 Currently supported modes are Normal, Insert, Visual and Visual Line. They are (reasonably) complete as far as movements and editing go.
 
+## Plugins
+
+It is my intention to add functionality similar to some popular VIM plugins.
+
+Currently suported:
+
+* vim-commentary: Commenting plugin from Tim Pope. Press `gcc` in normal mode to comment a line. `gc` in visual modes to comment lines.
+
+## What's missing'
+
 Some notable missing features:
 
 * Text objects (e.g., `caw` or `di(`)
@@ -19,6 +29,8 @@ Some notable missing features:
 * Splitting (textadept has built-in splitting which works just fine)
 * Probably others I'm not thinking of at this time.
 * Multiple clipboards (deleing, changing, yanking, etc. uses the system clipboard by default)
+
+## Custom Keys
 
 This makes use of Textadept's excellent mode-based key editing system. It also makes it very easy to add your own. A common
 idiom in the Vim world is to add an insert mode key binding for going back to normal mode without having to hit escape.

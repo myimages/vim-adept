@@ -1,11 +1,11 @@
 keys.visual_line_mode = {
   ['j'] = _VIM.act(function()
-    buffer.line_down_extend()
-    buffer.line_end_extend()
+    buffer.line_down()
+    buffer.home()
   end),
   ['k'] = _VIM.act(function()
-    buffer.line_up_extend()
-    buffer.line_home_extend()
+    buffer.line_up()
+    buffer.home()
   end),
   ['u'] = buffer.undo,
   ['cr'] = buffer.redo,
@@ -17,10 +17,10 @@ keys.visual_line_mode = {
       buffer.set_selection(buffer.current_pos, old_start)
       _VIM.state.repeat_count = nil
     else
-      buffer.document_end_extend()
+      buffer.document_end()
     end
-    buffer.home_extend()
-    buffer.line_end_extend()
+    buffer.home()
+    buffer.line_end()
   end,
   ['A'] = function()
     buffer.line_end()
@@ -61,9 +61,7 @@ keys.visual_line_mode = {
       buffer.goto_pos(0)
       buffer.set_selection(buffer.current_pos, old_start)
     end,
-    ['c'] = {
-      ['c'] = textadept.editing.block_comment,
-    },
+    ['c'] = textadept.editing.block_comment,
   },
   ['y'] = function()
     buffer.copy()
@@ -85,6 +83,14 @@ keys.visual_line_mode = {
   ['esc'] = function()
     _VIM.normalMode()
   end,
+  ['>'] = _VIM.act(function()
+    buffer.vc_home()
+    buffer.tab()
+  end),
+  ['<'] = _VIM.act(function()
+    buffer.vc_home()
+    buffer.back_tab()
+  end),
 }
 
 -- Return an empty function so undefined keys don't do anything
