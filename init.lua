@@ -7,7 +7,9 @@ keys['esc'] = function()
   _VIM.normalMode()
   _VIM.state.repeat_count = nil
 end
-events.connect(events.UPDATE_UI, _VIM.setStatusBar)
+events.connect(events.UPDATE_UI, function()
+  _VIM.setStatusBar()
+  _VIM.setCursor()
+end)
 
 _VIM.normalMode()
-

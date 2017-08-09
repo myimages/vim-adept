@@ -39,8 +39,8 @@ _VIM = {
     keys.MODE = 'visual_line_mode'
     _VIM.setStatusBar()
     _VIM.setCursor()
+    _VIM.visual_line_start_pos = buffer.current_pos
     textadept.editing.select_line()
-    buffer.selection_mode = buffer.SEL_LINES
   end,
   setCursor = function()
     if keys.MODE == 'normal_mode' or keys.MODE == 'visual_mode' or keys.MODE == 'visual_line_mode' then

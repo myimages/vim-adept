@@ -103,9 +103,9 @@ keys.normal_mode = {
     _VIM.insertMode()
   end,
   ['O'] = function()
-    buffer.line_up()
-    buffer.line_end()
+    buffer.home()
     buffer.new_line()
+    buffer.line_up()
     _VIM.insertMode()
   end,
   ['C'] = function()
@@ -260,14 +260,12 @@ keys.normal_mode = {
 }
 
 -- Return an empty function so undefined keys don't do anything
-setmetatable(keys.normal_mode, {__index = function(t, key)
+local deal_with_missing_keys = function(t, key)
   if #key > 1 then
     -- If this is an unrecognized control sequence (e.g. 'ms' for Cmd-S) then pass it down the main mode.
     return keys[key]
   else
     return function()
-      --ui.print(dump(t))
-      --ui.print(key)
       if key >= '1' and key <= '9' then
         if _VIM.state.repeat_count == nil then
           _VIM.state.repeat_count = key
@@ -277,4 +275,7 @@ setmetatable(keys.normal_mode, {__index = function(t, key)
       end
     end
   end
-end})
+end
+
+setmetatable(keys.normal_mode, {__index = deal_with_missing_keys})
+setmetatable(keys.normal_mode['c'], { __index = deal_with_missing_keys})

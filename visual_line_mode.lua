@@ -1,11 +1,28 @@
+local function redraw_selection()
+  local current = buffer.current_pos
+  local start = _VIM.visual_line_start_pos
+  buffer:goto_pos(start)
+  buffer:home()
+  local start_begin_pos = buffer.current_pos
+  buffer:line_end()
+  local start_end_pos = buffer.current_pos
+  if current < start then
+    buffer:set_sel(start_end_pos, current)
+    buffer:home_extend()
+  else
+    buffer:set_sel(start_begin_pos, current)
+    buffer:line_end_extend()
+  end
+end
+
 keys.visual_line_mode = {
   ['j'] = _VIM.act(function()
-    buffer.line_down()
-    buffer.home()
+    buffer:line_down()
+    redraw_selection()
   end),
   ['k'] = _VIM.act(function()
-    buffer.line_up()
-    buffer.home()
+    buffer:line_up()
+    redraw_selection()
   end),
   ['u'] = buffer.undo,
   ['cr'] = buffer.redo,
